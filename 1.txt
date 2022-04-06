@@ -1,0 +1,17 @@
+data(i"ris")
+head(iris)
+summary(iris)
+myprac<-prcomp(iris[,-5],scale=T)
+plot(scale(iris$Sepal.Length),scale(iris$Sepal.Width))
+myprac
+summary(myprac)
+plot(myprac,type="l")
+biplot(myprac,scale=0)
+str(myprac)
+myprac$x
+install.packages("pls")
+library(pls)
+names(iris)
+pcr_model<-pcr(Sepal.Length~.,data=iris,scale=TRUE,validation="CV")
+iris$pred<-predict(pcr_model,iris,ncomp=2)
+head(iris)
